@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="bmi">
+        <div class="height">
+            <label for="height">身高(cm):</label>
+            <input type="number" name="" id="height">
+        </div>
+        <br>
+        <div class="weight">
+            <label for="weight">體重(kg):</label>
+            <input type="number" name="" id="weight">
+        </div>
+    </div>
+    <button onclick="BMI()">計算</button>
+    <p id="result"></p>
+
+
+    <script>
+        function BMI () {
+            var weight = document.getElementById("weight").value;
+            var height = document.getElementById("height").value;
+
+            var result = weight/ (Math.pow((height/100),2));
+            document.getElementById("result").innerHTML=result;
+        }
+    </script>
+    <script src="test.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>寶可夢全圖鑑</h1>
+    <button onclick="ShowAll()">顯示全部</button>
+    <button onclick="ShowAny()">隨機顯示</button>
+    <button onclick="AllClear()">清除畫面</button>
+    <div id="container"></div>
+
+    <script>
+        // 全部顯示
+        function ShowAll() {
+            for(let i=1;i<=890;i++){
+            let pathfile = i.toString().padStart(3,"0");
+            let img = document.createElement("img");
+            addNewImg(img,pathfile);
+            addPic(img);
+            }
+        };
+        // 隨機顯示
+        function ShowAny(){
+            let i = Math.floor(Math.random()*100);
+            let pathfile = i.toString().padStart(3,"0");
+            let img = document.createElement("img");
+            addNewImg(img,pathfile);
+            addPic(img);
+        }
+        function addNewImg(data, file){
+            data.src = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${file}.png`
+        }
+        function addPic(data){
+            let container = document.getElementById("container");
+            container.appendChild(data);
+        }
+        function AllClear(){
+            document.getElementById("container").innerHTML = "";
+        }
+    </script>
+</body>
+
+</html>

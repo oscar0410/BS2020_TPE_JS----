@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="box"></div>
+
+    <script>
+        var headData = "DOM";
+        var contentData = ["window", "document", "html"];
+        var listData = ["Node", "NodeList", "HTMLCollection"];
+        var box = document.getElementById("box");
+
+        createDiv(box, headData, contentData, listData);
+
+        function createDiv(parent, headData, contentData, listData) {
+            var title = createHead(parent, headData);
+            createContent(title, contentData);
+            createList(title, listData);
+        }
+
+        function createHead(parent, headData) {
+            // 建立"h1"
+            var h1 = document.createElement("h1");
+            parent.appendChild(h1);
+            h1.innerText = headData;
+            return h1;
+        }
+
+        function createContent(headTitle, contentData) {
+            // 建立"div"
+            var div = document.createElement("div");
+            div.style.fontSize = "16px";
+            // 將此div與標題同等級
+            headTitle.append(div);
+
+            // 在"div"中建立"p"並放入資料
+            contentData.forEach(function (item) {
+                var p = document.createElement("p");
+                div.appendChild(p);
+                p.innerText = item;
+            })
+        }
+
+        function createList(headTitle, listData) {
+            // 建立"ul"
+            var ul = document.createElement("ul");
+            // 設定"ul"中的字型大小
+            ul.style.fontSize = "16px";
+            // 將"ul"與標題同等級
+            headTitle.append(ul);
+
+            //針對每一筆資料建立一個"li"並塞入
+            listData.forEach(function (item) {
+                var li = document.createElement("li");
+                ul.appendChild(li);
+                li.innerText = item;
+            })
+        }
+    </script>
+
+</body>
+
+</html>
