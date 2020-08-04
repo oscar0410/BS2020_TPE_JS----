@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" id="url" size=120>
+    <button id="btn">Fetch</button>
+    <div id="msg"></div>
+
+
+    <script>
+        let url = "https://raw.githubusercontent.com/oscar0410/FileStorage/master/iPad.json"
+        window.onload = function() {
+            let button = document.getElementById("btn");
+            button.addEventListener("click", FetchResourceGet);
+        }
+        function FetchResourceGet(){
+            
+            // 新增一個Request物件
+            const request = new Request(url);
+
+            fetch(request)
+            .then(response=>response.text())
+            .then(text => {
+                let msg = document.getElementById("msg");
+                msg.innerText = text;
+            })
+            .catch(error => {
+                let msg = document.getElementById("msg");
+                msg.innerText = error;
+            })
+        }
+    </script>
+</body>
+
+</html>

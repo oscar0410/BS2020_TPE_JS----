@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" id="url" size=120>
+    <button id="btn">Fetch</button>
+
+
+    <script>
+        let url = "";
+
+        window.onload = function () {
+            let button = document.getElementById("btn");
+            button.addEventListener("click", fetchResource);
+        }
+
+        function fetchResource() {
+            let input = document.getElementById("url");
+            url = input.value;
+            // Fetch API 28-37為同一行
+            fetch(url)
+            .then(response => response.text())
+            .then(text=>{
+                let body = document.querySelector("body");
+                body.innerHTML = text;
+            })
+            .catch(ex=>{
+                let body = document.querySelector("body");
+                body.innerHTML = ex;
+            })
+        }
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>用XMLHttpRequest請求GitHub JSON資料</h1>
+    <button id='button1'>Request JSON1</button>
+    <button id='button2'>Request JSON2</button>
+    <button id='button3'>Request JSON3</button>
+    <button id='button4'>Request JSON4</button>
+    <button id='btnClear'>Clear</button>
+    <div id='msg'></div>
+
+    <script type="module">
+        import {$g} from "./Modules/helpers.js";
+        // console.log($g("#button1").innerText);
+
+        let btn = $g("#button1").addEventListener("click",function(){
+            
+        });
+
+        let btn1 = $g("#button1").addEventListener("click",requestJson);
+        let btn2 = $g("#button2").addEventListener("click",requestJson2);
+        let btn3 = $g("#button3").addEventListener("click",requestJson3);
+        let msg = document.getElementById("msg");
+        let xhr = new XMLHttpRequest();
+        const url = "https://raw.githubusercontent.com/oscar0410/FileStorage/master/iPad.json";
+        
+        function requestJson(){
+            
+            xhr.open("GET",url);
+
+            xhr.send();
+
+            xhr.onload = function(){
+                // "this"代表本體-->此處為"xhr"
+                msg.innerText = this.responseText;
+                console.log(this);
+                // console.log(this.responseText);
+
+                // 以JSON物件型式
+                let ipadObject = JSON.parse(this.responseText);
+                console.log(ipadObject);
+            }
+
+        }
+    
+        function requestJson2(){
+            xhr.open("GET",url);
+            xhr.send();
+            xhr.onload = function(){
+                let response = this.response;
+                let responseText = this.responseText;
+                let responseType = this.responseType;
+                let responseUrl = this.responseURL;
+                let status = this.status;
+                let statusText = this.statusText;
+                let readyState = this.readyState;
+
+                msg.innerText = this.responseText;
+                console.log(this);
+                console.log(response);
+                console.log(responseText);
+                console.log(responseType);
+                console.log(responseUrl);
+                console.log(status);
+                console.log(statusText);
+                console.log(readyState);
+                
+            }
+        }
+    
+        function requestJson3(){
+            xhr.open("GET",url);
+            xhr.send();
+            xhr.onload = function(){
+                // readyState==4 代表下載完成
+                // status==200 代表
+                if(xhr.readyState==4 && xhr.status==200){
+                    msg.innerText = this.responseText;
+                }
+                else{
+                    msg.innerHTML = "發生錯誤 "+ xhr.status;
+                }
+
+                // 以statusText來做判斷 
+                // if(xhr.readyState==4 && xhr.statusText=="OK"){
+                //     msg.innerHTML = this.responseText;
+                // }
+                // else{
+                //     msg.innerHTML = "發生錯誤 "+ xhr.status;
+                // }
+            }
+        }
+
+        
+
+    </script>
+</body>
+</html>

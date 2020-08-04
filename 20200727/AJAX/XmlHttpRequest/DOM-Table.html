@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    table {
+        padding: 20px;
+        border-collapse: collapse;
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+
+    thead,
+    tbody {
+        border: 2px solid black;
+    }
+
+    th,
+    td {
+        border: 2px solid #aaa;
+        padding: 10px 20px;
+    }
+</style>
+
+<body>
+
+
+
+
+    <script>
+        const ipads = [{
+                "sku": "MW762",
+                "price": 10900,
+                "storage": "32GB",
+                "description": "10.2 吋 iPad Wi-Fi 機型 32GB - 金色",
+                "picture": "ipad_gold.png"
+            },
+            {
+                "sku": "MW792",
+                "price": 13900,
+                "storage": "128GB",
+                "description": "10.2 吋 iPad Wi-Fi 機型 128GB - 金色",
+                "picture": "ipad_gold.png"
+            },
+            {
+                "sku": "MW742",
+                "price": 10900,
+                "storage": "32GB",
+                "description": "10.2 吋 iPad Wi-Fi 機型 32GB - 太空灰色",
+                "picture": "ipad_space.png"
+            },
+            {
+                "sku": "MW772",
+                "price": 13900,
+                "storage": "128GB",
+                "description": "10.2 吋 iPad Wi-Fi 機型 128GB - 太空灰色",
+                "picture": "ipad_space.png"
+            },
+            {
+                "sku": "MW752",
+                "price": 10900,
+                "storage": "32GB",
+                "description": "10.2 吋 iPad Wi-Fi 機型 32GB - 銀色",
+                "picture": "ipad_silver.png"
+            },
+            {
+                "sku": "MW782",
+                "price": 13900,
+                "storage": "128GB",
+                "description": "10.2 吋 iPad Wi-Fi 機型 128GB - 銀色",
+                "picture": "ipad_silver.png"
+            },
+            {
+                "sku": "MW6D2",
+                "price": 15400,
+                "storage": "32GB",
+                "description": "10.2 吋 iPad Wi-Fi + 行動網路機型 32GB - 金色",
+                "picture": "ipad_gold.png"
+            },
+            {
+                "sku": "MW6G2",
+                "price": 18400,
+                "storage": "128GB",
+                "description": "10.2 吋 iPad Wi-Fi + 行動網路機型 128GB - 金色",
+                "picture": "ipad_gold.png"
+            },
+            {
+                "sku": "MW6A2",
+                "price": 15400,
+                "storage": "32GB",
+                "description": "10.2 吋 iPad Wi-Fi + 行動網路機型 32GB - 太空灰色",
+                "picture": "ipad_space.png"
+            },
+            {
+                "sku": "MW6E2",
+                "price": 18400,
+                "storage": "128GB",
+                "description": "10.2 吋 iPad Wi-Fi + 行動網路機型 128GB - 太空灰色",
+                "picture": "ipad_space.png"
+            },
+            {
+                "sku": "MW6C2",
+                "price": 15400,
+                "storage": "32GB",
+                "description": "10.2 吋 iPad Wi-Fi + 行動網路機型 32GB - 銀色",
+                "picture": "ipad_silver.png"
+            },
+            {
+                "sku": "MW6F2",
+                "price": 18400,
+                "storage": "128GB",
+                "description": "10.2 吋 iPad Wi-Fi + 行動網路機型 128GB - 銀色",
+                "picture": "ipad_silver.png"
+            }
+        ];
+    </script>
+
+    <!-- 從Github抓取資料 -->
+    <script>
+        var xhr = new XMLHttpRequest();
+        const url = "https://raw.githubusercontent.com/oscar0410/FileStorage/master/iPad.json";
+
+        xhr.open("GET", url);
+        xhr.send();
+        xhr.onload = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+
+                let object = JSON.parse(this.responseText)
+                const titleArray = Object.keys(object.products[0]);
+                const dateArray = Object.values(object.products);
+
+                console.table(titleArray);
+                console.table(dateArray);
+            }
+        }
+    </script>
+
+    <!-- 動態建立DOM物件 -->
+    <script>
+        let body = document.querySelector("body");
+        let table = document.createElement("table");
+        let tbody = document.createElement("tbody");
+        let thead = document.createElement("thead");
+
+        table.appendChild(thead);
+        table.appendChild(tbody);
+        body.appendChild(table);
+
+        const titleArray = Object.keys(ipads[0]);
+        const dateArray = Object.values(ipads[0]);
+
+        let theadtr = document.createElement("tr");
+        titleArray.forEach(element => {
+            let theadth = createTh(element);
+            theadtr.appendChild(theadth);
+        });
+        thead.appendChild(theadtr);
+
+        let tbodytr = document.createElement("tr");
+
+        dateArray.forEach(element => {
+            let tbodytd = document.createElement("td");
+            tbodytd.innerText = element;
+            tbodytr.appendChild(tbodytd);
+        });
+        tbody.appendChild(tbodytr);
+
+        function createTh(text) {
+            let th = document.createElement("th");
+            th.innerText = text;
+            return th;
+        };
+
+        function createTd(text) {
+            let td = document.createElement("td");
+            td.innerText = text;
+            return td;
+        };
+    </script>
+
+</body>
+
+</html>

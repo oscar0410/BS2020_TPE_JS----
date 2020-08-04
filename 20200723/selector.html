@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>CSS Selector</title>
+
+    <style>
+        table,
+        td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="title"></div>
+    <div id="subtitle" class="bg-info"></div>
+    <table>
+        <thead>
+            <tr>
+                <td>編號</td>
+                <td>姓名</td>
+                <td>電子郵件</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>1.</td>
+                <td>Kevin</td>
+                <td>kevin@gmail.com</td>
+            </tr>
+            <tr>
+                <td>2.</td>
+                <td>David</td>
+                <td>david@gmail.com</td>
+            </tr>
+            <tr>
+                <td>3.</td>
+                <td>Mary</td>
+                <td>mary@gmail.com</td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+
+    <script>
+        var title = document.getElementById("title");
+        title.innerHTML = "<h1>通訊錄</h1>";
+
+        var subtitle = document.querySelector(".bg-info");
+        subtitle.innerHTML = "<h3>第七⼩小組</h3>";
+        subtitle.setAttribute("style", "background-color:red")
+
+        var thead = document.querySelector("table>thead>tr");
+        thead.style.color = "blue";
+        thead.style.backgroundColor = 'yellow';
+        document.write(thead.getAttribute("style") + "<br>");
+
+        var trRows = document.querySelectorAll("table>tbody>tr");
+        document.write("*_".repeat(30) + "<br>");
+        trRows.forEach(function (item, index, list) {
+            let tdCols = item.cells;
+            for (var i = 0; i < tdCols.length; i++) {
+                document.write(`${tdCols[0].innerHTML},${tdCols[1].innerHTML}, ${tdCols[2].innerHTML}<br>`);
+            }
+        });
+        document.write("*_".repeat(30) + "<br>");
+        //3.querySelectorAll()選擇器,回傳NodeList-選擇Tbody的所有tr列列之第⼆二欄欄<td>
+        var names = document.querySelectorAll("table>tbody>tr>td:nth-child(2)");
+        //NodeList
+        names.forEach(function (item) {
+            document.write(`${item.innerHTML}<br>`); //item is 三個<td>
+        });
+    </script>
+</body>
+
+</html>

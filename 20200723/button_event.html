@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="button3">click</button>
+
+
+    <script>
+        var btn3 = document.getElementById("button3");
+        btn3.addEventListener("click",function(event){
+            alert(`${event.constructor.name}事件類型的 ${event.type}事件`);
+        })
+    </script>
+</body>
+</html>
