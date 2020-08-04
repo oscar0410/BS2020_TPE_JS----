@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抽獎</title>
+</head>
+
+<body>
+
+    <input type="number" name="" id="from">
+    <input type="number" name="" id="to">
+    <button id="btn-start">Start</button>
+    <button id="btn-stop">Stop</button>
+    <div id="msg"></div>
+
+
+
+    <script>
+        let interValid = "";
+        var Start = document.getElementById("btn-start");
+        var Stop = document.getElementById("btn-stop");
+
+
+        Start.addEventListener("click",StartChoose);
+        Stop.addEventListener("click",StopChoose);
+
+        function StartChoose() {
+            interValid = setInterval(SelectMan,50);
+        }
+
+        function StopChoose() {
+            clearInterval(interValid);
+        }
+
+        function SelectMan() {
+            let from = document.getElementById("from").value;
+            let to = document.getElementById("to").value;
+            let num = Getrandom(from,to)
+
+            let msg = document.getElementById("msg");
+            msg.innerText = num.toString().padStart(2,"0");
+        }
+
+        function Getrandom(min, max) {
+            return Math.floor(Math.random() * (max - min) + min);
+        }
+    </script>
+</body>
+
+
+</html>

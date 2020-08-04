@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抽獎2</title>
+</head>
+
+<body>
+    <input type="number" name="" id="from">
+    <input type="number" name="" id="to">
+    <button id="btnStart">Start</button>
+    <button id="btnStop">Stop</button>
+    <div id="msg"></div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script>
+        var btnStart = $("#btnStart");
+        var btnStop = $("#btnStop");
+        var msg = $("#msg");
+        let time = ""
+        let timeStatus = false
+        btnStart.on("click", StartChoose);
+        btnStop.on("click", StopChoose);
+
+
+        function StartChoose() {
+            if(timeStatus==false){
+                time = setInterval(SelectMan, 800);
+                timeStatus = true
+            }
+            else{
+                console.log(`timeStatus = ${timeStatus}`)
+                return;
+            }
+        }
+
+        function StopChoose() {
+            clearInterval(time);
+            timeStatus = false;
+        }
+
+        function SelectMan() {
+            let from = $("#from").val();
+            let to = $("#to").val();
+            let num = GetRandom(from, to);
+            msg.html(`<h1>${num.toString().padStart(3,"0")}</h1>`);
+        }
+
+        function GetRandom(min, max) {
+            return Math.floor(Math.random() * (max - min) + min);
+        }
+    </script>
+</body>
+
+</html>

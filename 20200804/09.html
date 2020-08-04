@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label for="text">文字區</label>
+    <input type="text" name="" id="text">
+    <div id="msg"></div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $("input").keyup(function(){
+            let value = $(this).val();
+            $("#msg").text(value);
+        });
+    </script>
+</body>
+
+</html>

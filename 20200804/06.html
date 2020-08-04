@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>更換標題顏色</title>
+</head>
+
+<body>
+    <h1>Click事件</h1>
+    <button id="btn1">Color1</button>
+    <button id="btn2">Color2</button>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        h1 = $("h1");
+        btn1 = $("#btn1");
+        btn2 = $("#btn2");
+
+        btn1.click(function(){
+            h1.css("background-color","skyblue");
+        })
+        btn2.on("click" , setColor);
+
+        function setColor(){
+            h1.css("background-color","red");
+        }
+    </script>
+</body>
+
+</html>
